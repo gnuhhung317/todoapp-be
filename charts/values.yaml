@@ -1,0 +1,9 @@
+replicaCount: 1
+image:
+  repository: your-dockerhub-username/spring-boot-app
+  tag: "latest"
+  pullPolicy: Always
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30002
