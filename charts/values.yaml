@@ -1,6 +1,6 @@
 replicaCount: 1
 image:
-  repository: your-dockerhub-username/spring-boot-app
+  repository: gnuhhung317/spring-boot-app
   tag: "latest"
   pullPolicy: Always
 service:
