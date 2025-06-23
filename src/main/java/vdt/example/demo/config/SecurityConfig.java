@@ -25,7 +25,8 @@ public class SecurityConfig {
                                                 // .hasAnyRole("USER", "ADMIN")
                                                 // .requestMatchers(HttpMethod.POST, "/api/todos/**").hasRole("ADMIN")
                                                 // .requestMatchers(HttpMethod.PUT, "/api/todos/**").hasRole("ADMIN")
-                                                // .requestMatchers(HttpMethod.DELETE, "/api/todos/**").hasRole("ADMIN")
+                                                // . r equestMatchers(HttpMethod.DELETE,
+                                                // "/api/todos/**").hasRole("ADMIN")
                                                 .anyRequest().permitAll());
                 http.httpBasic();
                 http.exceptionHandling(e -> e
