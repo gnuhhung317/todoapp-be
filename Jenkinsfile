@@ -31,7 +31,7 @@ pipeline {
         stage('Update Config Repo') {
             steps {
                 script {
-                    def tag = env.GIT_COMMIT.take(7)
+                    def tag = env.TAG_NAME ?: env.GIT_COMMIT.take(7)
                     dir('config-repo') {
                         git url: "${CONFIG_REPO}", credentialsId: 'git-credentials'
                         sh "sed -i 's|image: gnuhhung317/spring-boot-app:.*|image: gnuhhung317/spring-boot-app:${tag}|g' be-values.yaml"
