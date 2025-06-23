@@ -14,7 +14,7 @@
 
 Ứng dụng được cấu hình để kết nối với PostgreSQL thông qua Neon.tech với chuỗi kết nối:
 ```
-postgresql://vdt_owner:npg_gbZyN3MUexw6@ep-crimson-rain-a12fd1sf-pooler.ap-southeast-1.aws.neon.tech/vdt?sslmode=require
+postgresql://vdt_owner:npg_gbZyN3MUexw6@ep-crimson-rain-a12fd1sf-pooler.ap-southeast-1.aws.neon.tech/vdt?sslmode=require   
 ```
 
 ## Chạy ứng dụng
