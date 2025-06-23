@@ -35,7 +35,7 @@ pipeline {
                     dir('config-repo') {
                         git url: "${CONFIG_REPO}", credentialsId: 'git-credentials', branch: 'main'
                         sh "sed -i 's|image: gnuhhung317/spring-boot-app:.*|image: gnuhhung317/spring-boot-app:${tag}|g' spring-boot-values.yaml"
-                        sh "git add be-values.yaml"
+                        sh "git add spring-boot-values.yaml"
                         sh "git commit -m 'Update spring-boot-app image version to ${tag}'"
                         sh "git push origin main"
                     }
