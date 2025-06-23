@@ -20,18 +20,19 @@ public class SecurityConfig {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(authz -> authz
+                                                .requestMatchers("/api/todos/**").authenticated()
                                                 .requestMatchers(HttpMethod.GET, "/api/todos/**")
                                                 .hasAnyRole("USER", "ADMIN")
                                                 .requestMatchers(HttpMethod.POST, "/api/todos/**").hasRole("ADMIN")
                                                 .requestMatchers(HttpMethod.PUT, "/api/todos/**").hasRole("ADMIN")
                                                 .requestMatchers(HttpMethod.DELETE, "/api/todos/**").hasRole("ADMIN")
-                                                .requestMatchers("/actuator/health", "/actuator/info").permitAll()
-                                                .requestMatchers("/actuator/**").permitAll()
-                                                .anyRequest().authenticated());
+                                                .anyRequest().permitAll());
                 http.httpBasic();
                 http.exceptionHandling(e -> e
                                 .accessDeniedHandler(
-                                                (request, response, accessDeniedException) -> response.sendError(403)));
+                                                (request, response, accessDeniedException) -> response.sendError(403))
+                                .authenticationEntryPoint(
+                                                (request, response, authException) -> response.sendError(403)));
                 http.formLogin().disable();
 
                 return http.build();
