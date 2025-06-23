@@ -34,6 +34,8 @@ pipeline {
                     def tag = env.TAG_NAME ?: env.GIT_COMMIT.take(7)
                     dir('config-repo') {
                         git url: "${CONFIG_REPO}", credentialsId: 'git-credentials', branch: 'main'
+                        sh 'git config user.email "jenkins@example.com"'
+                        sh 'git config user.name "Jenkins"'
                         sh "sed -i 's|image: gnuhhung317/spring-boot-app:.*|image: gnuhhung317/spring-boot-app:${tag}|g' spring-boot-values.yaml"
                         sh "git add spring-boot-values.yaml"
                         sh "git commit -m 'Update spring-boot-app image version to ${tag}'"
