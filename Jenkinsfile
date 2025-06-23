@@ -14,7 +14,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def tag = env.GIT_COMMIT.take(7) 
+                    def tag = env.TAG_NAME ?: env.GIT_COMMIT.take(7)
                     sh "docker build -t gnuhhung317/spring-boot-app:${tag} ."
                 }
             }
@@ -22,7 +22,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    def tag = env.GIT_COMMIT.take(7)
+                    def tag = env.TAG_NAME ?: env.GIT_COMMIT.take(7)
                     sh "echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                     sh "docker push gnuhhung317/spring-boot-app:${tag}"
                 }
