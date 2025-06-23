@@ -39,7 +39,9 @@ pipeline {
                         sh "sed -i 's|tag: \".*\"|tag: \"${tag}\"|g' spring-boot-values.yaml"
                         sh "git add spring-boot-values.yaml"
                         sh "git commit -m 'Update spring-boot-app image version to ${tag}'"
-                        sh "git push origin main"
+                        withCredentials([usernamePassword(credentialsId: 'git-credentials', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                            sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/gnuhhung317/todo-config.git main"
+                        }
                     }
                 }
             }
