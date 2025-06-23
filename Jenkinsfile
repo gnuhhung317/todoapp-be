@@ -9,7 +9,10 @@ pipeline {
         stage('Check Tag') {
             steps {
                 script {
-                    if (!env.TAG_NAME) {
+                    sh 'git fetch --tags'
+                    def gitCommit = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                    def commitTag = sh(script: "git tag --contains ${gitCommit}", returnStdout: true).trim()
+                    if (!env.TAG_NAME || commitTag == '') {
                         error "No tag found for this commit. Pipeline stopped."
                     }
                     echo "Tag found: ${env.TAG_NAME}"
