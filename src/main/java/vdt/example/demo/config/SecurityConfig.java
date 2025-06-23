@@ -20,12 +20,12 @@ public class SecurityConfig {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(authz -> authz
-                                                .requestMatchers("/api/todos/**").authenticated()
-                                                .requestMatchers(HttpMethod.GET, "/api/todos/**")
-                                                .hasAnyRole("USER", "ADMIN")
-                                                .requestMatchers(HttpMethod.POST, "/api/todos/**").hasRole("ADMIN")
-                                                .requestMatchers(HttpMethod.PUT, "/api/todos/**").hasRole("ADMIN")
-                                                .requestMatchers(HttpMethod.DELETE, "/api/todos/**").hasRole("ADMIN")
+                                                // .requestMatchers("/api/todos/**").authenticated()
+                                                // .requestMatchers(HttpMethod.GET, "/api/todos/**")
+                                                // .hasAnyRole("USER", "ADMIN")
+                                                // .requestMatchers(HttpMethod.POST, "/api/todos/**").hasRole("ADMIN")
+                                                // .requestMatchers(HttpMethod.PUT, "/api/todos/**").hasRole("ADMIN")
+                                                // .requestMatchers(HttpMethod.DELETE, "/api/todos/**").hasRole("ADMIN")
                                                 .anyRequest().permitAll());
                 http.httpBasic();
                 http.exceptionHandling(e -> e
